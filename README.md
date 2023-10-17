@@ -71,11 +71,11 @@ Langkah-langkah untuk menghasilkan daftar rekomendasi film berdasarkan aktivitas
 Random User #565 memberikan rating pada 5 movies dengan rata-rata rating = 5.0/5.0 sehingga berikut merupakan top-5 recommendation yang didapat sebagai output dari model yang telah dibuat:
 | movieId | title                                     | genres                            |
 | ------- | ----------------------------------------  | --------------------------------- |
-| 31      | Twelve Monkeys (a.k.a. 12 Monkeys) (1995) | Mystery|Sci-Fi|Thriller           |
-| 46      | Usual Suspects, The (1995)                | Crime|Mystery|Thriller            |
-| 257     | Pulp Fiction (1994)                       | Comedy|Crime|Drama|Thriller       |
-| 461     | Schindler's List (1993)                   | Drama|War                         |
-| 508     | Dances with Wolves (1990)                 | Adventure|Drama|Western           |
+| 31      | Twelve Monkeys (a.k.a. 12 Monkeys) (1995) | Mystery, Sci-Fi, Thriller         |
+| 46      | Usual Suspects, The (1995)                | Crime, Mystery, Thriller          |
+| 257     | Pulp Fiction (1994)                       | Comedy, Crime, Drama, Thriller    |
+| 461     | Schindler's List (1993)                   | Drama, War                        |
+| 508     | Dances with Wolves (1990)                 | Adventure, Drama, Western         |
 
 
 # Evaluation
