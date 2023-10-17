@@ -55,7 +55,8 @@ Dalam persiapan data, menggunakan beberapa teknik pada tiga data frame, yaitu mo
 2. **Pembagian Dataset**: Pembagian data menggunakan teknik Train test split yaitu proses membagi data menjadi data train dan data test. Data latih akan digunakan untuk membangun model, sedangkan data uji akan digunakan untuk menguji performa model. Pada proyek ini dataset dibagi dengan perbandingan 80% untuk data training dan 20% untuk data testing.
 
 
-# Modeling
+# Modeling and Result
+## Modeling
 Proses pemodelan yang digunakan di sini melibatkan teknik embedding, khususnya menggunakan Model Neural Collaborative Filtering (NCF). Model NCF adalah jaringan saraf yang digunakan untuk menyusun rekomendasi berdasarkan umpan balik implisit dari pengguna terhadap item. Data pelatihan untuk model ini harus berisi pasangan urutan (ID pengguna, ID film) yang menunjukkan interaksi pengguna dengan item, seperti memberi peringkat atau mengklik. Model NCF pertama kali diperkenalkan dalam makalah oleh Xiangnan He, Lizi Liao, Hanwang Zhang, Liqiang Nie, Xia Hu, dan Tat-Seng Chua yang berjudul "Neural Collaborative Filtering."
 
 Langkah-langkah untuk menghasilkan daftar rekomendasi film berdasarkan aktivitas pengguna berdasarkan peringkat yang diberikan oleh pengguna adalah sebagai berikut:
@@ -66,20 +67,16 @@ Langkah-langkah untuk menghasilkan daftar rekomendasi film berdasarkan aktivitas
 4. Membuat dataframe baru (user_pref_df) berdasarkan dataframe utama (movie_df) dan memilih hanya film-film yang termasuk dalam daftar film terbaik.
 5. Menghitung rata-rata peringkat yang diberikan oleh pengguna untuk film-film tersebut.
 
-Untuk menyajikan top-N recommendation sebagai output dari metode yang diajukan:
-1. Menggunakan model NCF yang telah dibangun untuk menghitung peringkat prediksi untuk semua item yang belum ditonton oleh pengguna.
-2. Mengurutkan item-item ini berdasarkan peringkat prediksi dan memilih top-N item untuk merekomendasikan kepada pengguna.
+## Result
+Random User #565 memberikan rating pada 5 movies dengan rata-rata rating = 5.0/5.0 sehingga berikut merupakan top-5 recommendation yang didapat sebagai output dari model yang telah dibuat:
+| movieId | title                                     | genres                            |
+| ------- | ----------------------------------------  | --------------------------------- |
+| 31      | Twelve Monkeys (a.k.a. 12 Monkeys) (1995) | Mystery|Sci-Fi|Thriller           |
+| 46      | Usual Suspects, The (1995)                | Crime|Mystery|Thriller            |
+| 257     | Pulp Fiction (1994)                       | Comedy|Crime|Drama|Thriller       |
+| 461     | Schindler's List (1993)                   | Drama|War                         |
+| 508     | Dances with Wolves (1990)                 | Adventure|Drama|Western           |
 
-Contoh:
-Misalkan pengguna A telah menonton beberapa film dan ingin diberikan rekomendasi top-5 film yang belum pernah mereka tonton berdasarkan model NCF:
-
-Film 1
-Film 2
-Film 3
-Film 4
-Film 5
-
-Film-film ini adalah film yang memiliki peringkat prediksi tertinggi oleh model NCF dan belum ditonton oleh pengguna A. Dengan memberikan rekomendasi seperti ini, membantu pengguna A menemukan film-film yang sesuai dengan preferensinya dan mungkin belum mereka ketahui sebelumnya.
 
 # Evaluation
 Dalam evaluasi model ini, kami menggunakan beberapa metrik, yaitu Mean Squared Error (MSE), precision, dan recall. Mean Squared Error adalah salah satu metrik yang paling umum digunakan untuk mengukur seberapa baik model dalam melakukan prediksi. MSE digunakan untuk mengestimasi sejauh mana prediksi model mendekati nilai aktual. Semakin rendah nilai MSE, semakin baik model dalam memprediksi data aktual, dan ini berarti model ini dapat digunakan untuk peramalan di masa depan.
