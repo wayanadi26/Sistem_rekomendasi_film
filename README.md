@@ -12,7 +12,9 @@ Oleh karena itu, penelitian ini akan mengulas pembangunan sistem rekomendasi men
 
 # Business Understanding
 ## Problem Statement
-   Bagaimana cara mengatasi masalah informasi film yang berlimpah di internet, sehingga para penikmat film dapat dengan mudah menemukan film yang sesuai dengan preferensi mereka?
+   1. Banyaknya pilihan film di internet menyebabkan kebingungan para penikmat film dalam menemukan film yang sesuai dengan preferensi mereka, mengurangi pengalaman menonton yang menyenangkan.
+   2. Kurangnya efisiensi dalam pencarian film berdasarkan preferensi pengguna menghambat penemuan konten berkualitas.
+   3. Industri perfilman perlu menghadapi persaingan yang semakin ketat dari hiburan digital, dan menemukan solusi untuk meningkatkan aksesibilitas dan daya tarik konten mereka di era digital.
 
 ## Goals:
   1. Mengurangi kebingungan para penikmat film saat mencari film yang ingin ditonton.
@@ -50,7 +52,8 @@ Dalam persiapan data, menggunakan beberapa teknik pada tiga data frame, yaitu mo
 
 1. **Normalisasi:** Normalisasi dilakukan untuk mengubah nilai kolom numerik dalam dataset ke skala umum, sehingga perbedaan rentang nilai tidak memengaruhi analisis yang dilakukan. Normalisasi dapat menggunakan metode normalisasi Min-Max, yang akan mengubah nilai-nilai dalam rentang tertentu. Dengan ini, data menjadi lebih mudah dibandingkan dan diinterpretasikan. Proses normalisasi dilakukan dengan kode yang sesuai.
 
-Dengan menerapkan teknik-teknik ini, data yang akan digunakan untuk analisis dan pengembangan model akan menjadi lebih bersih, lengkap, dan siap digunakan. Ini akan membantu meningkatkan kualitas model rekomendasi film yang akan dibangun nantinya.
+2. **Pembagian Dataset**: Pembagian data menggunakan teknik Train test split yaitu proses membagi data menjadi data train dan data test. Data latih akan digunakan untuk membangun model, sedangkan data uji akan digunakan untuk menguji performa model. Pada proyek ini dataset dibagi dengan perbandingan 80% untuk data training dan 20% untuk data testing.
+
 
 # Modeling
 Proses pemodelan yang digunakan di sini melibatkan teknik embedding, khususnya menggunakan Model Neural Collaborative Filtering (NCF). Model NCF adalah jaringan saraf yang digunakan untuk menyusun rekomendasi berdasarkan umpan balik implisit dari pengguna terhadap item. Data pelatihan untuk model ini harus berisi pasangan urutan (ID pengguna, ID film) yang menunjukkan interaksi pengguna dengan item, seperti memberi peringkat atau mengklik. Model NCF pertama kali diperkenalkan dalam makalah oleh Xiangnan He, Lizi Liao, Hanwang Zhang, Liqiang Nie, Xia Hu, dan Tat-Seng Chua yang berjudul "Neural Collaborative Filtering."
@@ -62,6 +65,21 @@ Langkah-langkah untuk menghasilkan daftar rekomendasi film berdasarkan aktivitas
 3. Membuat daftar film terbaik (top_movie_refference) dengan mengurutkannya berdasarkan peringkat film.
 4. Membuat dataframe baru (user_pref_df) berdasarkan dataframe utama (movie_df) dan memilih hanya film-film yang termasuk dalam daftar film terbaik.
 5. Menghitung rata-rata peringkat yang diberikan oleh pengguna untuk film-film tersebut.
+
+Untuk menyajikan top-N recommendation sebagai output dari metode yang diajukan:
+1. Menggunakan model NCF yang telah dibangun untuk menghitung peringkat prediksi untuk semua item yang belum ditonton oleh pengguna.
+2. Mengurutkan item-item ini berdasarkan peringkat prediksi dan memilih top-N item untuk merekomendasikan kepada pengguna.
+
+Contoh:
+Misalkan pengguna A telah menonton beberapa film dan ingin diberikan rekomendasi top-5 film yang belum pernah mereka tonton berdasarkan model NCF:
+
+Film 1
+Film 2
+Film 3
+Film 4
+Film 5
+
+Film-film ini adalah film yang memiliki peringkat prediksi tertinggi oleh model NCF dan belum ditonton oleh pengguna A. Dengan memberikan rekomendasi seperti ini, membantu pengguna A menemukan film-film yang sesuai dengan preferensinya dan mungkin belum mereka ketahui sebelumnya.
 
 # Evaluation
 Dalam evaluasi model ini, kami menggunakan beberapa metrik, yaitu Mean Squared Error (MSE), precision, dan recall. Mean Squared Error adalah salah satu metrik yang paling umum digunakan untuk mengukur seberapa baik model dalam melakukan prediksi. MSE digunakan untuk mengestimasi sejauh mana prediksi model mendekati nilai aktual. Semakin rendah nilai MSE, semakin baik model dalam memprediksi data aktual, dan ini berarti model ini dapat digunakan untuk peramalan di masa depan.
@@ -78,3 +96,4 @@ Dalam evaluasi model ini, kami menggunakan beberapa metrik, yaitu Mean Squared E
 
    ![image](https://github.com/wayanadi26/Sistem_rekomendasi_film/assets/88713651/357903b1-85e2-4d7e-8fbe-ba60b6995ac8)
 
+Berdasarkan ketiga grafik yang ada diatas maka dapat disimpulkan bahwa model rekomendasi yang dibuat menghasilkan model yang goodfit karena tingkat akurasi, presisi, recal dan MSE yang baik.
